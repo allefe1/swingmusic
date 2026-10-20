@@ -89,6 +89,9 @@ class SearchTracks:
         """
         Gets tracks matching the query by title or by artist and title.
         """
+        if not self.query:
+            return remove_duplicates(self.tracks)[:limit]
+
         scores = best_scores(self.query, self.tracks, Cutoff.tracks)
 
         tracks: list[Track] = []
